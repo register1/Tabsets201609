@@ -1,7 +1,7 @@
 library(shiny)
-data0 <- read.csv("http://pastebin.com/raw/ikf16vAQ")
 library(dplyr)
 library(magrittr)
+data0 <- read.csv("https://raw.githubusercontent.com/hirogami/Tabsets201609/master/data0")
 
 # Define server logic for random distribution application
 shinyServer(function(input, output) {
@@ -15,7 +15,7 @@ shinyServer(function(input, output) {
                    year2 = filter(data0,year==2),
                    year3 = filter(data0,year==3),
                    yearall = data0,
-                   rnorm)
+                   year1)
     
     dist[,"marks"]
 
@@ -27,13 +27,15 @@ shinyServer(function(input, output) {
   # are called in the sequence implied by the dependency graph
   output$plot <- renderPlot({
     dist <- input$dist
-    n <- input$n
+
     hist(data(), 
          main=paste(dist))
   }) 
   
   # Generate a summary of the data
   output$summary <- renderPrint({
-    summary(data())
+    summary.n <- summary(data())
+    summary.n["n"] <- NROW(data())
+    summary.n
       })
 })
