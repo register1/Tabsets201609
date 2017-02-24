@@ -2,7 +2,7 @@ library(shiny)
 library(dplyr)
 library(magrittr)
 data0 <- read.csv("https://raw.githubusercontent.com/hirogami/Tabsets201609/master/data0")
-
+#hallo
 # Define server logic for random distribution application
 shinyServer(function(input, output) {
   
